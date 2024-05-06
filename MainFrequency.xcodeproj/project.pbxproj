@@ -10,7 +10,6 @@
 		75FBD4392BE924180039112C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FBD4382BE924180039112C /* AppDelegate.swift */; };
 		75FBD43B2BE924180039112C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FBD43A2BE924180039112C /* SceneDelegate.swift */; };
 		75FBD43D2BE924180039112C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FBD43C2BE924180039112C /* ViewController.swift */; };
-		75FBD4402BE924180039112C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75FBD43E2BE924180039112C /* Main.storyboard */; };
 		75FBD4422BE9241A0039112C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75FBD4412BE9241A0039112C /* Assets.xcassets */; };
 		75FBD4452BE9241A0039112C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75FBD4432BE9241A0039112C /* LaunchScreen.storyboard */; };
 		75FBD44E2BE924670039112C /* AudioRecorderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FBD44D2BE924670039112C /* AudioRecorderDelegate.swift */; };
@@ -23,7 +22,6 @@
 		75FBD4382BE924180039112C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		75FBD43A2BE924180039112C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		75FBD43C2BE924180039112C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		75FBD43F2BE924180039112C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		75FBD4412BE9241A0039112C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		75FBD4442BE9241A0039112C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		75FBD4462BE9241A0039112C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -66,7 +64,6 @@
 				75FBD4382BE924180039112C /* AppDelegate.swift */,
 				75FBD43A2BE924180039112C /* SceneDelegate.swift */,
 				75FBD43C2BE924180039112C /* ViewController.swift */,
-				75FBD43E2BE924180039112C /* Main.storyboard */,
 				75FBD4412BE9241A0039112C /* Assets.xcassets */,
 				75FBD4432BE9241A0039112C /* LaunchScreen.storyboard */,
 				75FBD4462BE9241A0039112C /* Info.plist */,
@@ -144,7 +141,6 @@
 			files = (
 				75FBD4452BE9241A0039112C /* LaunchScreen.storyboard in Resources */,
 				75FBD4422BE9241A0039112C /* Assets.xcassets in Resources */,
-				75FBD4402BE924180039112C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,14 +163,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		75FBD43E2BE924180039112C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				75FBD43F2BE924180039112C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		75FBD4432BE9241A0039112C /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -319,7 +307,6 @@
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "É preciso permitir o uso do microfone para captuar o audio e analisar a frequencia";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -349,7 +336,6 @@
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "É preciso permitir o uso do microfone para captuar o audio e analisar a frequencia";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
