@@ -14,17 +14,43 @@ class ViewController: UIViewController, AnalysisDelegate {
     @IBOutlet weak var noteLabel: UILabel!
     
     private var recorderDelegate: AudioRecorderDelegate?
+    private var note: Note = Note(icon: .A, frequency: 440)
+    
+    // TableView
+    @IBOutlet weak var tableView: UITableView!
+    private var noteDataSource = NoteDataSource()
+    private var noteTableViewDelegate = NoteTableViewDelegate()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Configurando delegate
         recorderDelegate = AudioManager()
         recorderDelegate?.delegate = self
         
+        // Configurando table
+        self.tableView.dataSource = self.noteDataSource
+        self.tableView.delegate = self.noteTableViewDelegate
+        self.noteTableViewDelegate.dataSource = self.noteDataSource
+        self.noteTableViewDelegate.tableView = self.tableView
+        
+        // configurando View
         frequencyLabel.text = "Frequência: 440 Hz"
         noteLabel.text = "A"
-        
-        self.recordButton.setTitle("Start", for: .normal)
+        configRecordButton(enable: false)
+    }
+    
+    private func configRecordButton(enable: Bool) {
+        if enable {
+            self.recordButton.setTitle("Parar", for: .normal)
+            self.recordButton.backgroundColor = #colorLiteral(red: 1, green: 0.2156862745, blue: 0.3725490196, alpha: 1)
+        } else {
+            self.recordButton.setTitle("Iniciar", for: .normal)
+            self.recordButton.backgroundColor = #colorLiteral(red: 0.03899999335, green: 0.5180000067, blue: 1, alpha: 1)
+        }
+        self.recordButton.layer.cornerRadius = 25
+        self.recordButton.setTitleColor(.white, for: .normal)
     }
     
     @IBAction func handleButton(_ sender: Any) {
@@ -34,16 +60,22 @@ class ViewController: UIViewController, AnalysisDelegate {
         }
         
         if recorderDelegate.isRecording {
-            self.recordButton.setTitle("Start", for: .normal)
             recorderDelegate.stop()
         } else {
-            self.recordButton.setTitle("Stop", for: .normal)
             recorderDelegate.start()
         }
+        
+        configRecordButton(enable: recorderDelegate.isRecording)
+    }
+    
+    @IBAction func addNote(_ sender: Any) {
+        self.noteDataSource.notes.append(self.note)
+        self.tableView.reloadData()
     }
     
     func didUpdate(frequency: Float, note: String) {
         DispatchQueue.main.async {
+            self.note = Note(icon: NoteIcon(rawValue: note), frequency: frequency)
             let formatted = String(format: "Frequência: %.2f Hz", frequency)
             self.frequencyLabel.text = formatted
             self.noteLabel.text = note

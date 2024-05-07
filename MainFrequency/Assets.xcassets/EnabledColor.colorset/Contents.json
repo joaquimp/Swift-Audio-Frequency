@@ -2,8 +2,8 @@
   "colors" : [
     {
       "color" : {
-        "platform" : "ios",
-        "reference" : "systemBlueColor"
+        "platform" : "universal",
+        "reference" : "systemPinkColor"
       },
       "idiom" : "universal"
     },
@@ -15,8 +15,8 @@
         }
       ],
       "color" : {
-        "platform" : "ios",
-        "reference" : "systemBlueColor"
+        "platform" : "universal",
+        "reference" : "systemPinkColor"
       },
       "idiom" : "universal"
     }
