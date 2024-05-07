@@ -14,6 +14,7 @@
 		751222202BE886C600626C76 /* MainFrequencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7512221F2BE886C600626C76 /* MainFrequencyTests.swift */; };
 		7512222A2BE886C600626C76 /* MainFrequencyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751222292BE886C600626C76 /* MainFrequencyUITests.swift */; };
 		7512222C2BE886C600626C76 /* MainFrequencyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7512222B2BE886C600626C76 /* MainFrequencyUITestsLaunchTests.swift */; };
+		758EA9B72BE9C8CD00105899 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758EA9B62BE9C8CD00105899 /* AudioManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		751222252BE886C600626C76 /* MainFrequencyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MainFrequencyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		751222292BE886C600626C76 /* MainFrequencyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFrequencyUITests.swift; sourceTree = "<group>"; };
 		7512222B2BE886C600626C76 /* MainFrequencyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFrequencyUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		758EA9B62BE9C8CD00105899 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 		7512220D2BE886C400626C76 /* MainFrequency */ = {
 			isa = PBXGroup;
 			children = (
+				758EA9B62BE9C8CD00105899 /* AudioManager.swift */,
 				7512220E2BE886C400626C76 /* MainFrequencyApp.swift */,
 				751222102BE886C400626C76 /* ContentView.swift */,
 				751222122BE886C500626C76 /* Assets.xcassets */,
@@ -257,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				758EA9B72BE9C8CD00105899 /* AudioManager.swift in Sources */,
 				751222112BE886C400626C76 /* ContentView.swift in Sources */,
 				7512220F2BE886C400626C76 /* MainFrequencyApp.swift in Sources */,
 			);
