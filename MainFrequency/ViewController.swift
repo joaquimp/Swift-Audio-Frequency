@@ -9,9 +9,9 @@ import UIKit
 
 class ViewController: UIViewController, AnalysisDelegate {
     
-    @IBOutlet weak var startStopBtn: UIButton!
-    @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var frequencyLabel: UILabel!
+    @IBOutlet weak var noteLabel: UILabel!
     
     private var recorderDelegate: AudioRecorderDelegate?
 
@@ -21,37 +21,32 @@ class ViewController: UIViewController, AnalysisDelegate {
         recorderDelegate = AudioManager()
         recorderDelegate?.delegate = self
         
-        frequencyLabel.text = "0 Hz"
-        messageLabel.text = ""
+        frequencyLabel.text = "Frequência: 440 Hz"
+        noteLabel.text = "A"
         
-        self.startStopBtn.setTitle("Start", for: .normal)
+        self.recordButton.setTitle("Start", for: .normal)
     }
     
     @IBAction func handleButton(_ sender: Any) {
         guard let recorderDelegate = recorderDelegate else {
-            messageLabel.text = "Delegate para gravação não definido"
+            print("Delegate para gravação não definido")
             return
         }
         
-        messageLabel.text = ""
-        
         if recorderDelegate.isRecording {
-            self.startStopBtn.setTitle("Start", for: .normal)
+            self.recordButton.setTitle("Start", for: .normal)
             recorderDelegate.stop()
-            messageLabel.text = "gravação parada"
         } else {
-            self.startStopBtn.setTitle("Stop", for: .normal)
+            self.recordButton.setTitle("Stop", for: .normal)
             recorderDelegate.start()
-            messageLabel.text = "gravando..."
         }
-        
     }
     
-    func didUpdate(frequency: Float) {
+    func didUpdate(frequency: Float, note: String) {
         DispatchQueue.main.async {
-            self.frequencyLabel.text = "\(frequency) Hz"
+            let formatted = String(format: "Frequência: %.2f Hz", frequency)
+            self.frequencyLabel.text = formatted
+            self.noteLabel.text = note
         }
     }
-
 }
-

@@ -17,7 +17,7 @@ class AudioManager: AudioRecorderDelegate {
     private var inputNode: AVAudioInputNode!
     private var audioFormat: AVAudioFormat!
     
-    private let amplitudeThreshold: Float = 0.001
+    private let amplitudeThreshold: Float = 0.01
     private var sampleRate: Float = 44100.0  // Esta taxa deve corresponder à configuração real do hardware
     
     init() {
@@ -68,9 +68,23 @@ class AudioManager: AudioRecorderDelegate {
                 let frequency = Float(maxFrequencyIndex) * (self.sampleRate / Float(frameLength))
                 
                 // Informa a quem interessar que a frequencia foi atualizada
-                self.delegate?.didUpdate(frequency: frequency)
+                let note = self.frequencyToNote(Double(frequency))
+                self.delegate?.didUpdate(frequency: frequency, note: note)
             }
         }
+    }
+    
+    private func frequencyToNote(_ frequency: Double) -> String {
+        let noteNames = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
+        let a4 = 440.0
+        let a4Index = 9 // Index of A in the noteNames array (starting from C)
+
+        // Calculate the number of half steps away from A4
+        let halfStepsFromA4 = Int(round(12 * log(frequency / a4) / log(2.0)))
+        
+        // Calculate the index of the note in the array
+        let noteIndex = (a4Index + halfStepsFromA4 + 120) % 12 // +120 to avoid negative index
+        return noteNames[noteIndex]
     }
     
     func start() {
