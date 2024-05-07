@@ -17,7 +17,7 @@ class AudioManager: AudioRecorderDelegate {
     private var inputNode: AVAudioInputNode!
     private var audioFormat: AVAudioFormat!
     
-    private let amplitudeThreshold: Float = 0.001
+    private let amplitudeThreshold: Float = 0.01
     private var sampleRate: Float = 44100.0  // Esta taxa deve corresponder à configuração real do hardware
     
     init() {

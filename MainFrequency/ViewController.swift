@@ -12,9 +12,9 @@ class ViewController: UIViewController, AnalysisDelegate {
     var recordButton: UIButton = {
         let button = UIButton()
         
-        button.backgroundColor = .systemBlue
-        button.setTitle("Start", for: .normal)
-        button.layer.cornerRadius = 12
+        button.backgroundColor = #colorLiteral(red: 0.03899999335, green: 0.5180000067, blue: 1, alpha: 1)
+        button.setTitle("Iniciar", for: .normal)
+        button.layer.cornerRadius = 25
         
         return button
     }()
@@ -23,7 +23,7 @@ class ViewController: UIViewController, AnalysisDelegate {
     var noteLabel: UILabel = UILabel()
     
     private var recorderDelegate: AudioRecorderDelegate?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -68,7 +68,6 @@ class ViewController: UIViewController, AnalysisDelegate {
         view.addSubview(recordButton)
         
         recordButton.addTarget(self, action: #selector(handleButton), for: .touchUpInside)
-        
         recordButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -77,6 +76,20 @@ class ViewController: UIViewController, AnalysisDelegate {
             recordButton.widthAnchor.constraint(equalToConstant: 200),
             recordButton.heightAnchor.constraint(equalToConstant: 50)
         ])
+        
+        configRecordButton(enable: false)
+    }
+    
+    private func configRecordButton(enable: Bool) {
+        if enable {
+            self.recordButton.setTitle("Parar", for: .normal)
+            self.recordButton.backgroundColor = #colorLiteral(red: 1, green: 0.2156862745, blue: 0.3725490196, alpha: 1)
+        } else {
+            self.recordButton.setTitle("Iniciar", for: .normal)
+            self.recordButton.backgroundColor = #colorLiteral(red: 0.03899999335, green: 0.5180000067, blue: 1, alpha: 1)
+        }
+        self.recordButton.layer.cornerRadius = 25
+        self.recordButton.setTitleColor(.white, for: .normal)
     }
     
     @IBAction func handleButton() {
@@ -86,12 +99,12 @@ class ViewController: UIViewController, AnalysisDelegate {
         }
         
         if recorderDelegate.isRecording {
-            self.recordButton.setTitle("Start", for: .normal)
             recorderDelegate.stop()
         } else {
-            self.recordButton.setTitle("Stop", for: .normal)
             recorderDelegate.start()
         }
+        
+        self.configRecordButton(enable: recorderDelegate.isRecording)
     }
     
     func didUpdate(frequency: Float, note: String) {
