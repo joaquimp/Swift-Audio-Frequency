@@ -18,8 +18,8 @@ class AudioManager {
     private let amplitudeThreshold: Float = 0.01
     private var sampleRate: Float = 44100.0  // Esta taxa deve corresponder à configuração real do hardware
 
-    var currentFrequency: Float = 0.0
-    var currentNote: String = " "
+    var currentFrequency: Float = 440.00
+    var currentNote: String = "A"
     var isRecording: Bool = false
 
     init() {

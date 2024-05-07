@@ -24,7 +24,7 @@ struct ContentView: View {
             }, label: {
                 ZStack {
                     RoundedRectangle(cornerRadius: 25.0)
-                        .foregroundStyle(.blue)
+                        .foregroundStyle(audioManager.isRecording ? .enabled : .accent)
                     Text(audioManager.isRecording ? "Stop" : "Start")
                         .foregroundStyle(.white)
                 }.frame(width: 150, height: 50)
