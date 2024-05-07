@@ -8,5 +8,5 @@
 import Foundation
 
 protocol AnalysisDelegate: AnyObject {
-    func didUpdate(frequency: Float)
+    func didUpdate(frequency: Float, note: String)
 }

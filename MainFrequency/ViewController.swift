@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController, AnalysisDelegate {
     
-    var startStopBtn: UIButton = {
+    var recordButton: UIButton = {
         let button = UIButton()
         
         button.backgroundColor = .systemBlue
@@ -19,9 +19,8 @@ class ViewController: UIViewController, AnalysisDelegate {
         return button
     }()
     
-    var messageLabel: UILabel = UILabel()
     var frequencyLabel: UILabel = UILabel()
-    var frequencyFixedLabel: UILabel = UILabel()
+    var noteLabel: UILabel = UILabel()
     
     private var recorderDelegate: AudioRecorderDelegate?
 
@@ -40,86 +39,68 @@ class ViewController: UIViewController, AnalysisDelegate {
     }
     
     func setupLabels() {
+        view.addSubview(noteLabel)
+        noteLabel.translatesAutoresizingMaskIntoConstraints = false
+        noteLabel.textAlignment = .center
+        noteLabel.text = "A"
+        
+        NSLayoutConstraint.activate([
+            noteLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            noteLabel.widthAnchor.constraint(equalTo: view.widthAnchor),
+            noteLabel.heightAnchor.constraint(equalToConstant: 30),
+            noteLabel.bottomAnchor.constraint(equalTo: recordButton.topAnchor, constant: -16)
+        ])
+        
         view.addSubview(frequencyLabel)
         frequencyLabel.translatesAutoresizingMaskIntoConstraints = false
         frequencyLabel.textAlignment = .center
-        frequencyLabel.text = "0 Hz"
+        frequencyLabel.text = "Frequência: 440 Hz"
         
         NSLayoutConstraint.activate([
             frequencyLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             frequencyLabel.widthAnchor.constraint(equalTo: view.widthAnchor),
             frequencyLabel.heightAnchor.constraint(equalToConstant: 30),
-            frequencyLabel.bottomAnchor.constraint(equalTo: startStopBtn.topAnchor, constant: -28),
-        ])
-        
-        
-        
-        view.addSubview(frequencyFixedLabel)
-        frequencyFixedLabel.translatesAutoresizingMaskIntoConstraints = false
-        frequencyFixedLabel.textAlignment = .center
-        frequencyFixedLabel.text = "Frequency"
-
-        NSLayoutConstraint.activate([
-            frequencyFixedLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            frequencyFixedLabel.widthAnchor.constraint(equalTo: view.widthAnchor),
-            frequencyFixedLabel.heightAnchor.constraint(equalToConstant: 30),
-            frequencyFixedLabel.bottomAnchor.constraint(equalTo: frequencyLabel.topAnchor, constant: 8),
-        ])
-        
-        view.addSubview(messageLabel)
-        messageLabel.translatesAutoresizingMaskIntoConstraints = false
-        messageLabel.textAlignment = .center
-        messageLabel.text = "gravação parada"
-        
-        NSLayoutConstraint.activate([
-            messageLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            messageLabel.widthAnchor.constraint(equalTo: view.widthAnchor),
-            messageLabel.heightAnchor.constraint(equalToConstant: 30),
-            messageLabel.topAnchor.constraint(equalTo: startStopBtn.bottomAnchor, constant: 8),
+            frequencyLabel.bottomAnchor.constraint(equalTo: noteLabel.topAnchor)
         ])
     }
     
     func setupButton() {
-        view.addSubview(startStopBtn)
+        view.addSubview(recordButton)
         
-        startStopBtn.addTarget(self, action: #selector(handleButton), for: .touchUpInside)
+        recordButton.addTarget(self, action: #selector(handleButton), for: .touchUpInside)
         
-        startStopBtn.translatesAutoresizingMaskIntoConstraints = false
+        recordButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            startStopBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            startStopBtn.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            startStopBtn.widthAnchor.constraint(equalToConstant: 200),
-            startStopBtn.heightAnchor.constraint(equalToConstant: 50)
+            recordButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            recordButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            recordButton.widthAnchor.constraint(equalToConstant: 200),
+            recordButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
     
     @IBAction func handleButton() {
         guard let recorderDelegate = recorderDelegate else {
-            messageLabel.text = "Delegate para gravação não definido"
+            print("Delegate para gravação não definido")
             return
         }
         
-        messageLabel.text = ""
-        
         if recorderDelegate.isRecording {
-            self.startStopBtn.setTitle("Start", for: .normal)
+            self.recordButton.setTitle("Start", for: .normal)
             recorderDelegate.stop()
-            messageLabel.text = "gravação parada"
         } else {
-            self.startStopBtn.setTitle("Stop", for: .normal)
+            self.recordButton.setTitle("Stop", for: .normal)
             recorderDelegate.start()
-            messageLabel.text = "gravando..."
         }
-        
     }
     
-    func didUpdate(frequency: Float) {
+    func didUpdate(frequency: Float, note: String) {
         DispatchQueue.main.async {
-            self.frequencyLabel.text = "\(frequency) Hz"
+            let formatted = String(format: "Frequência: %.2f Hz", frequency)
+            self.frequencyLabel.text = formatted
+            self.noteLabel.text = note
         }
     }
-
 }
 
 #Preview("First") {
